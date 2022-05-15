@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard_css.css">
+</head>
+<body>
+    <div class="master">
+        <div class="sidebar">
+            <h2 class="dashboardText">Dashboard</h2>
+            <div class="sideTextBar">
+                <div class="sideText" onclick="togglePage(1)">
+                    <img src="./assets/icons8-inbox-64.png" alt="">
+                    <p>Inbox</p>
+                </div>
+                <div class="sideText" onclick="togglePage(2)">
+                    <img src="./assets/icons8-add-50.png" alt="">
+                    <p>Add Hall</p>
+                </div>
+                <div class="sideText" onclick="togglePage(3)">
+                    <img src="./assets/icons8-history-64.png" alt="">
+                    <p>history</p>
+                </div>
+                <div class="sideText" onclick="togglePage(4)">
+                    <img src="./assets//icons8-maintenance-64.png" alt="">
+                    <p>maintanince</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="inbox" id="inboxPage">
+                <div class="inboxHeader">
+                    <span class="inboxName">index</span>
+                    <span class="inboxName">staff name</span>
+                    <span class="inboxName">hall name</span>
+                    <span class="inboxName">time</span>
+                </div>
+                <div id="inboxData">
+                    <!-- <div class="temp_msg">
+                        <h3 class="indexs">1</h3>
+                        <h3 class="tempName">vijay kumar</h3>
+                        <h3 class="tempHall">IT seminor hall</h3>
+                        <h3 class="tempTime">4.30 AM</h3>
+                    </div> -->
+                </div>
+               
+            </div>
+            <div class="addHall" id="addHallPage">
+                <div class="newHall">
+                    <div class="addNewHall">
+                        <div class="addHallTitle">
+                                add new hall
+                        </div>
+                        <div class="addHallForum">
+                            <label for="newHallName">Hall Name</label><br>
+                            <input type="text" id="newHallName"><br>
+                            <button>Done</button>
+                        </div>
+                    </div>
+                    <div class="myHall">
+                        <div class="myHallTitle">
+                            Halls in IT
+                        </div>
+                        <div class="myHallDiv">
+                            <div class="showHall">IT semenir hall</div>
+                            <div class="showHall">UG LAB_1</div>
+                            <div class="showHall">UG LAB_2</div>
+                            <div class="showHall">UG LAB_3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="history" id="historyPage">
+                <h1>
+                    SEE THE HISTORY HERE
+                </h1>
+            </div>
+            <div class="reserved" id="reservedPage">
+                <h1>
+                    RESERVED HALL HERE
+                </h1>
+            </div>
+        </div>
+</div>
+<div class="alertDiv" id="alertDivID" style="display: none;">
+    <div class="alertBox">
+        <div class="alertTitle">
+           <h2>permission control</h2>
+           <button id="alertbutn">X</button>
+        </div>
+        <div class="alertText">
+            <h3 id="alert_name">vijay kumar</h3>
+            <h3 id="alert_hall">IT seminor hall</h3>
+            <textarea id="textBox" cols="30" rows="5" placeholder="description"></textarea>
+            <div class="alertButn">send</div>
+        </div>
+    </div>
+</div>
+<script src="./dashboardScript.js"></script>
+</body>
+</html>
