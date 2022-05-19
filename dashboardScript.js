@@ -7,6 +7,8 @@ const addHallPage = document.getElementById("addHallPage")
 const historyPage = document.getElementById("historyPage")
 const reservedPage = document.getElementById("reservedPage")
 
+const openDiv = document.getElementById("openDiv")
+
 const togglePage = (pid)=>{
     inboxPage.style.display = "none"
     addHallPage.style.display = "none"
@@ -22,35 +24,68 @@ const togglePage = (pid)=>{
         reservedPage.style.display = "block"
 }
 
-togglePage(2)
+togglePage(1)
 
 const serverData = [
-    {id:101,name:"vijay kumar",hall:"IT seminor hall",time:"4:30 AM"},
-    {id:102,name:"karthick",hall:"CSE seminor hall",time:"11:45 AM"},
-    {id:103,name:"ram krishna",hall:"Apple inc",time:"8:05 AM"}
+    {id:101,name:"ram krishna",hall:"IT seminor hall",time:"8:05 AM",Ftime:"3:10 PM",Tto:"5:30 PM",desg:"AP/IT",dept:"CSE",Date1:"12.05.2022",Note:"Welcome to my website and welcome you all and have a fun"},
+    {id:102,name:"vijay",hall:"CSE semonir hall",time:"10:35 AM",Ftime:"12:50 PM",Tto:"4:30 PM",desg:"AP/IT SG",dept:"IT",Date1:"25.05.2022",Note:"best platfrom for learning programming"},
+    {id:103,name:"tamil kannan",hall:"Apple inc",time:"11:05 AM",Ftime:"3:10 PM",Tto:"5:30 PM",desg:"AP/IT",dept:"ECE",Date1:"12.05.2022",Note:"thank and welcome you all and have a fun"},
+
 ]
 
-const alertToggle = ()=>{
-    if(alertDiv.style.display=="flex")
-        alertDiv.style.display = "none"
+const alertBox = document.getElementById("alertbox");
+const alertMessage = document.getElementById("alertMsg");
+
+function alertFunc(str="responce accetped"){
+    alertMessage.innerText = str;
+    if(alertBox.style.display=="none") alertBox.style.display = "";
     else{
-        alertDiv.style.display = "flex"
+        alertBox.style.display = "none";
+        // window.location.href = "index.html"
     }
 }
 
-const startAlert = (data)=>{
-    const Aname = document.getElementById("alert_name")
-    const Ahall = document.getElementById("alert_hall")
+
+const briefToggle = (sid=0)=>{
+    if(openDiv.style.display=="block" && sid==1)
+        openDiv.style.display = "none"
+    else {
+        openDiv.style.display = "block"
+    }
+}
+/*
+ <div class="openText">
+    <span class="openTextH">descignation</span>
+    <span class="openTextD">AP/IT</span>
+</div>
+*/
+const infoBrief = (infoData)=>{
     for(let ID of serverData){
-        if(data==ID.id){
-            Aname.innerText = ID.name
-            Ahall.innerText = ID.hall
-            alertToggle()
+        if(infoData==ID.id){
+            const openContent = document.getElementById("openContent")
+            openContent.innerText = ""
+            const headerList = ['name','department','desgnation','hall name','recived','data','from','to','note']
+            Object.values(ID).slice(1,10).forEach((element,index) => {
+                const letDiv = document.createElement('div')
+                const letSpan1 = document.createElement('span')
+                const letSpan2 = document.createElement('span')
+                letDiv.setAttribute("class","openText")
+                if(headerList[index]=="note")
+                    letDiv.className = 'openText oneNote';
+                letSpan1.setAttribute("class","openTextH")
+                letSpan2.setAttribute("class","openTextD")
+                letSpan1.append(headerList[index])
+                letSpan2.append(element)
+                letDiv.append(letSpan1)
+                letDiv.append(letSpan2)
+                openContent.append(letDiv)
+            });
+            briefToggle()
             break
         }
     }
 }
-
+// infoBrief(101)
 const displayInbox = ()=>{
     for(let data of serverData){
         const msgDiv = document.createElement('div')
@@ -67,7 +102,7 @@ const displayInbox = ()=>{
         msgDiv.append(H2)
         msgDiv.append(H3)
         msgDiv.append(H4)
-        msgDiv.setAttribute("onclick",`startAlert(${data.id})`)
+        msgDiv.setAttribute("onclick",`infoBrief(${data.id})`)
         indata.append(msgDiv)
     }
      
@@ -77,5 +112,5 @@ displayInbox()
 
 
 
-
-document.getElementById("alertbutn").addEventListener("click",alertToggle)
+document.querySelector(".openTitle span").addEventListener("click",()=> briefToggle(1))
+// document.getElementById("alertbutn").addEventListener("click",alertToggle)           

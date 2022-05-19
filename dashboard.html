@@ -11,6 +11,10 @@
     <div class="master">
         <div class="sidebar">
             <h2 class="dashboardText">Dashboard</h2>
+            <div class="loginName">
+                <h2 class="loginUserName">ramkumar</h2>
+                <p class="loginUserDept">IT department</p>
+            </div>
             <div class="sideTextBar">
                 <div class="sideText" onclick="togglePage(1)">
                     <img src="./assets/icons8-inbox-64.png" alt="">
@@ -37,7 +41,7 @@
                     <span class="inboxName">index</span>
                     <span class="inboxName">staff name</span>
                     <span class="inboxName">hall name</span>
-                    <span class="inboxName">time</span>
+                    <span class="inboxName">recvied</span>
                 </div>
                 <div id="inboxData">
                     <!-- <div class="temp_msg">
@@ -47,7 +51,57 @@
                         <h3 class="tempTime">4.30 AM</h3>
                     </div> -->
                 </div>
-               
+               <div class="openDiv" id="openDiv" style="display: none;">
+                   <div class="openTitle">
+                       <span></span>
+                       <span></span>
+                       <span></span>
+                       <!-- <h2>details</h2> -->
+                   </div>
+                    <div class="openContent" id="openContent">
+                        <!-- <div class="openText">
+                            <span class="openTextH">name</span>
+                            <span class="openTextD">vijay kumar</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">department</span>
+                            <span class="openTextD">CSE</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">descignation</span>
+                            <span class="openTextD">AP/IT</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">hall name</span>
+                            <span class="openTextD">IT seminor Hall</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">recived</span>
+                            <span class="openTextD">3:30 AM 5/04/2022</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">Date</span>
+                            <span class="openTextD"> 6/04/2022</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">from</span>
+                            <span class="openTextD"> 11:15 AM</span>
+                        </div>
+                        <div class="openText">
+                            <span class="openTextH">to</span>
+                            <span class="openTextD">3:30 PM</span>
+                        </div>
+                        <div class="openText oneNote">
+                            <span class="openTextH">Note</span>
+                            <span class="openTextD">welcome to python programming language and c programming</span> 
+                        </div> -->
+                    </div>
+                    <div class="openTextSend">
+                        <textarea  id="openTextBox" cols="40" rows="3" placeholder="text"></textarea><br><br>
+                        <button class="appButn" onclick="alertFunc()">aprove</button>
+                        <button class="decButn" onclick="alertFunc()">decline</button>
+                    </div>
+               </div>
             </div>
             <div class="addHall" id="addHallPage">
                 <div class="newHall">
@@ -86,18 +140,13 @@
             </div>
         </div>
 </div>
-<div class="alertDiv" id="alertDivID" style="display: none;">
-    <div class="alertBox">
-        <div class="alertTitle">
-           <h2>permission control</h2>
-           <button id="alertbutn">X</button>
+<div class="alertBox" id="alertbox" style="display: none;">
+    <div class="alertDiv" id="alertdiv">
+        <div class="image_line">
+            <img src="./assets/tick_image.jpg" alt="super image" class="alert_img">
         </div>
-        <div class="alertText">
-            <h3 id="alert_name">vijay kumar</h3>
-            <h3 id="alert_hall">IT seminor hall</h3>
-            <textarea id="textBox" cols="30" rows="5" placeholder="description"></textarea>
-            <div class="alertButn">send</div>
-        </div>
+        <h3 id="alertMsg">thank you for your code</h3>
+        <button class="alertButn" onclick="alertFunc()">Ok</button>
     </div>
 </div>
 <script src="./dashboardScript.js"></script>
