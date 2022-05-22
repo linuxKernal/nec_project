@@ -233,6 +233,21 @@ label{
     background-color:#ff6000;
     color:#ffffff;
 }
+
+.note{
+    /* background-color: green; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.note label{
+    flex-grow: 1;
+}
+.note textarea{
+    flex-grow: 1;
+    font-size: 1.1rem;
+}
+
 .bookingbtn button:hover{
     /* background-color: #ff2D00; */
     border:1px solid #ff2D00;

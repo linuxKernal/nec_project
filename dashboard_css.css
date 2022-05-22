@@ -6,7 +6,50 @@
 
 body{
     background: url('./assets/nec_home.jpg');
+    overflow: hidden;
 }
+
+header{
+    background-color: rgba(235, 232, 232, 0.712);
+    display: flex;
+    justify-content: space-between;
+}
+
+header h2{
+    color: rgb(255, 255, 255);
+    padding: .5rem;
+}
+
+header img{
+    width:50px;
+}
+
+header .logoutButn{
+    color: white;
+    font-size: 1.1rem;
+    width:5rem;
+    background-color: rgb(30, 204, 248);
+    border: 2px solid white;
+    border-radius:  .3rem;
+    
+}
+header .logoutButn:hover{
+    background-color: rgb(9, 183, 236);
+}
+
+header .logoutButn:active{
+    border: 2px solid transparent;
+}
+
+
+header .headerDiv{
+    /* background-color: green; */
+    flex-grow: 1;
+    padding: .5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .master{
     color: white;
     background-color: lightgreen;
@@ -14,7 +57,7 @@ body{
     grid-template-columns:15rem 1fr;
     height:90vh;
     width:90vw;
-    margin: 5vh auto;
+    margin: 1vh auto;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 1rem;
 }
@@ -90,7 +133,7 @@ body{
 .inboxHeader{
     /* background-color: rgb(39, 174, 252); */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     /* gap: .3rem; */
     /* padding: .3rem; */
     /* border: 3px solid rgb(114, 113, 113); */
@@ -116,7 +159,7 @@ body{
 
 .temp_msg{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: .3rem;
     padding: .3rem;
     cursor: pointer;
@@ -200,6 +243,7 @@ body{
 
 .addNewHall{
     background-color: rgb(27, 241, 116);
+    max-height:10rem;
 }
 
 .addHallTitle{
