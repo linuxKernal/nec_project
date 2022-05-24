@@ -4,7 +4,74 @@ if(!cookies){
 }
 document.getElementById("loginID").innerText = cookies.split("@")[1].toUpperCase()+" department"
 
-import {doc,getDoc,db,collection ,updateDoc, arrayUnion} from "./config.js"
+import {doc,getDoc,db,collection ,updateDoc,getDocs,arrayUnion} from "./config.js"
+
+const logButn = document.getElementById("bookingButn")
+
+const getData = async ()=>{
+  logButn.innerText = "Booking..."
+  const name = document.getElementById("facultyname").value 
+  const dept = document.getElementById("facultydepartment").value
+  const desg = document.getElementById("facultydesignation").value
+  const rdept = document.getElementById("hallrequirementdep").value
+  const depthall = document.getElementById("hallrequirementroom").value
+  const date = document.getElementById("atdate").value
+  const f1 = document.getElementById("Ftime1").value
+  const f2 = document.getElementById("Ftime2").value
+  const f3 = document.getElementById("Ftime3").value
+  const FromTime = `${f1}:${f2} ${f3}`
+  const t1 = document.getElementById("Tto1").value
+  const t2 = document.getElementById("Tto2").value
+  const t3 = document.getElementById("Tto3").value
+  const ToTime = `${t1}:${t2} ${t3}`
+  const audioSystem = document.getElementById("PAS").value
+  const note = document.getElementById("TextBox").value
+  const ref  = doc(db,"bookingRequests",rdept.toUpperCase()+"_INBOX")
+  const sent = new Date()
+  await updateDoc(ref, {
+      inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
+  }).then(()=>  logButn.innerText = "Booked"
+  )
+
+}
+const hallData = {
+  "IT":[],
+  "CSE":[],
+  "ECE":[],
+  "EEE":[],
+  "MECH":[]
+}
+
+const getHalls = async ()=>{
+  const querySnapshot = await getDocs(collection(db, "HALL"));
+  querySnapshot.forEach((doc) => {
+    const dept = `${doc.id}`.split('_')[0]
+  doc.data()['listHall'].forEach(item=>{
+    hallData[dept].push(item)
+  })
+});
+}
+
+getHalls()
+
+const showHalls = ()=>{
+  const rdept = document.getElementById("hallrequirementdep")
+  const targetList = document.getElementById("hallrequirementroom")
+  targetList.innerText = ""
+  const getvalue = rdept.options[rdept.selectedIndex].value;  
+  hallData[getvalue].forEach(item=>{
+    const options = document.createElement('option')
+    options.text = options.value = item.hallName
+    targetList.add(options)
+  })
+}
+
+
+logButn.addEventListener("click",getData)
+
+document.getElementById("hallrequirementdep").addEventListener("change",showHalls)
+
+// dashboard page
 
 const addHallClick = document.getElementById("addHallButn")
 
@@ -32,12 +99,13 @@ const showHall = async()=>{
 showHall()
 
 const addHall  = async ()=>{
-    const hallName = document.getElementById("newHallName").value
+    const hallName = document.getElementById("newHallName")
     addHallClick.innerText = "Adding..."
     const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
     await updateDoc(ref, {
-        listHall: arrayUnion({'hallName':hallName,'status':"free"})
+        listHall: arrayUnion({'hallName':hallName.value,'status':"free"})
     }).then(()=>console.log("successfully new hall added"))
+    hallName.value = ""
     showHall()
 }
 
@@ -69,7 +137,7 @@ const togglePage = (pid)=>{
         reservedPage.style.display = "block"
 }
 
-togglePage(1)
+togglePage(4)
 
 const serverData = [
 //     {id:101,name:"ram krishna",hall:"IT seminor hall",time:"8:05 AM",Ftime:"3:10 PM",Tto:"5:30 PM",desg:"AP/IT",dept:"CSE",Date1:"12.05.2022",Note:"Welcome to my website and welcome you all and have a fun"},
@@ -119,6 +187,7 @@ const briefToggle = (sid=0)=>{
 */
 const infoBrief = (infoData)=>{
     // console.log(infoData);
+    document.getElementById("openTextBox").value = ""
     for(let ID of serverData){
         if(infoData==ID.id){
             const openContent = document.getElementById("openContent")

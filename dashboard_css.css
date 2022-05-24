@@ -6,49 +6,45 @@
 
 body{
     background: url('./assets/nec_home.jpg');
-    overflow: hidden;
 }
-
 header{
-    background-color: rgba(235, 232, 232, 0.712);
+    background-color: rgb(255, 255, 255);
     display: flex;
-    justify-content: space-between;
-}
-
-header h2{
-    color: rgb(255, 255, 255);
-    padding: .5rem;
 }
 
 header img{
-    width:50px;
+    width:350px;
 }
 
-header .logoutButn{
-    color: white;
+.header_img{
+    /* background-color: green; */
+    padding: .3rem;
+    flex-grow: 3;
+
+}
+
+.header_text{
+    /* background-color: rgb(5, 169, 245); */
+    padding: .3rem;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutButn{
     font-size: 1.1rem;
-    width:5rem;
-    background-color: rgb(30, 204, 248);
-    border: 2px solid white;
-    border-radius:  .3rem;
-    
-}
-header .logoutButn:hover{
-    background-color: rgb(9, 183, 236);
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    padding: .3rem 1rem;
+    background-color: rgb(4, 169, 245);
+    border-radius: .3rem;
 }
 
-header .logoutButn:active{
+.logoutButn:active{
     border: 2px solid transparent;
 }
 
-
-header .headerDiv{
-    /* background-color: green; */
-    flex-grow: 1;
-    padding: .5rem;
-    display: flex;
-    justify-content: flex-end;
-}
 
 .master{
     color: white;
@@ -63,7 +59,7 @@ header .headerDiv{
 }
 
 .sidebar{
-    background-color: #f54b4b;
+    background-color: rgb(59, 238, 42);
     display: flex;
     flex-direction: column;
     padding: .3rem;
@@ -83,10 +79,11 @@ header .headerDiv{
 
 .sideText{
     /* background-color: springgreen; */
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding: .3rem;
     padding-left: 1.5rem;
     margin: .3rem auto;
+    text-transform: capitalize;
     width:14rem;
     /* border-radius: .5rem; */
     display: flex;
@@ -242,13 +239,14 @@ header .headerDiv{
 }
 
 .addNewHall{
-    background-color: rgb(27, 241, 116);
+    background-color: rgba(212, 212, 212, 0.623);
     max-height:10rem;
+    /* border-left: 3px solid rgb(255, 255, 255); */
 }
 
 .addHallTitle{
-    background-color: white;
-    color: green;
+    background-color: rgb(16, 211, 245);
+    color: white;
     font-size: 1.3rem;
     text-transform: capitalize;
     padding: .3rem;
@@ -269,11 +267,15 @@ header .headerDiv{
     outline: none;
     width:20rem;
     margin: .5rem 0;
+    border-top: none;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 3px solid rgb(5, 177, 245);
 }
 .addHallForum button{
     font-size: 1.2rem;
     color: white;
-    background-color: green;
+    background-color: rgb(13, 173, 247);
     padding: .3rem 2rem;
     border: none;
     border-radius: .3rem;
@@ -427,3 +429,76 @@ header .headerDiv{
     content: ":";
 }
 
+.bookingDiv{
+    /* background-color: green; */
+}
+
+.bookingMain{
+    background-color: rgb(241, 241, 241);
+    height:80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .3rem;
+}
+
+.bookingDiv h2{
+    padding: .2rem;
+    text-transform: capitalize;
+    background-color: rgb(52, 248, 3);
+    border-radius: .3rem;
+}
+
+.bookDiv label{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: gray;
+}
+
+.bookDiv input{
+    font-size: 1.3rem;
+    outline: none;
+    margin-top: .3rem;
+    border: 2px solid rgb(9, 245, 9);
+}
+
+.bookDiv select{
+    background-color: rgb(255, 255, 255);
+    /* color: white; */
+}
+
+.bookDiv select,.bookDiv textarea{
+    margin-top: .3rem;
+    border: 2px solid rgb(16, 223, 16);
+    outline: none;
+    margin-top: .3rem;
+    font-size: 1.1rem;
+}
+
+.bookDiv input:focus,.bookDiv select:focus,.bookDiv textarea:focus{
+    border: 2px solid rgb(5, 169, 245);
+}
+
+.bookDiv button{
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    color: white;
+    background-color: rgb(54, 236, 9);
+    padding: .3rem 2rem;
+    border: 2px solid white;
+    border-radius: .3rem;
+}
+
+.bookDiv button:active{
+    border: 2px solid transparent;
+}
+
+#Ftime1,#Ftime2,#Tto1,#Tto2{
+    width:3.5rem;
+}
+
+.sep{
+    display: inline;
+    font-size: 2rem;
+    color: black;
+}

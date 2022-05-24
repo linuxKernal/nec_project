@@ -9,10 +9,10 @@
 </head>
 <body>
     <header>
-        <img src="./assets/photo_2022-05-20_18-52-49.jpg" alt="necLogo">
-        <h2>NEC HALL MANAGEMENT SYSTEM</h2>
-        <div class="headerDiv">
-            
+        <div class="header_img">
+            <img src="https://nec.edu.in/wp-content/themes/vajra/assets/images/logo_2.svg" alt="NEC Logo">
+        </div>
+        <div class="header_text">
             <button class="logoutButn">Logout</button>
         </div>
     </header>
@@ -23,21 +23,21 @@
                 <h3 class="loginUserDept" id="loginID"></h3>
             </div>
             <div class="sideTextBar">
+                <div class="sideText" id="page4">
+                    <img src="./assets//booking.png" alt="">
+                    <p>booking requests</p>
+                </div>
                 <div class="sideText" id="page1">
-                    <img src="./assets/icons8-inbox-64.png" alt="">
-                    <p>Inbox</p>
+                    <img src="./assets/file.png" alt="">
+                    <p>booking approval</p>
                 </div>
                 <div class="sideText" id="page2">
-                    <img src="./assets/icons8-add-50.png" alt="">
+                    <img src="./assets/plus.png" alt="">
                     <p>Add Hall</p>
                 </div>
                 <div class="sideText" id="page3">
-                    <img src="./assets/icons8-history-64.png" alt="">
+                    <img src="./assets/history.png" alt="">
                     <p>history</p>
-                </div>
-                <div class="sideText" id="page4">
-                    <img src="./assets//icons8-maintenance-64.png" alt="">
-                    <p>maintanince</p>
                 </div>
             </div>
         </div>
@@ -142,9 +142,88 @@
                 </h1>
             </div>
             <div class="reserved" id="reservedPage">
-                <h1>
-                    RESERVED HALL HERE
-                </h1>
+                <div class="bookingDiv">
+                    <h2>Booking Requests</h2>
+                    <div class="bookingMain">
+                        <div class="bookDiv">
+                            <label for="facultyname">Name</label><br>
+                            <input type="text" id="facultyname">
+                        </div>
+                        <div class="bookDiv">
+                            <label for="facultydepartment">faculty department</label><br>
+                            <select name="wefw" id="facultydepartment">
+                                <option value="Null" selected>__SELECT__</option>
+                                <option value="CSE">CSE</option>
+                                <option value="IT" >IT</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="EEE">EEE</option>
+                            </select>
+                        </div>
+                        <div class="bookDiv">
+                            <label for="facultydesignation">faculty designation</label><br>
+                            <input type="text" id="facultydesignation">
+                        </div>
+                        <div class="bookDiv">
+                            <label for="">hall requirement</label><br>
+                            <select name="wefw" id="hallrequirementdep">
+                                <option value="Null" selected>__SELECT__</option>
+                                <option value="CSE">CSE</option>
+                                <option value="IT" >IT</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="EEE">EEE</option>
+                            </select>
+                            <select name="we" id="hallrequirementroom"  required>
+                                <option value="Null" selected>__SELECT__</option>
+                                <option value="CSE">CSE</option>
+                                <option value="IT" >IT</option>
+                                <option value="ECE">ECE</option>
+                                <option value="MECH">MECH</option>
+                                <option value="EEE">EEE</option>
+                            </select>
+                        </div>
+                        <div class="bookDiv">
+                            <label for="atdate">Date</label><br>
+                            <input type="date" id="atdate">
+                        </div>
+                        <div class="bookDiv">
+                            <!-- <label for="Time">Time</label><br> -->
+                            <span>
+                                <label for="From">From</label>
+                                <input type="number" id="Ftime1"><p class="sep">:</p>
+                                <input type="number" id="Ftime2">
+                                <select id="Ftime3">
+                                    <option value="AM" >AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                            </span>
+                            <span>
+                                <label for="TO">TO</label>
+                                <input type="number" id="Tto1"><p class="sep">:</p>
+                                <input type="number" id="Tto2">
+                                <select id="Tto3">
+                                    <option value="AM" >AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="bookDiv">
+                            <label for="PAS">PA system</label><br>
+                            <select  id="PAS">
+                                <option value="Need" >Need</option>
+                                <option value="Not Need">Not Need</option>
+                            </select>
+                        </div>
+                        <div class="bookDiv">
+                            <label for="TextBox">Note</label><br>
+                            <textarea id="TextBox" cols="40" rows="3"></textarea>
+                        </div>
+                        <div class="bookDiv">
+                            <button id="bookingButn">book</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 </div>
