@@ -12,7 +12,10 @@ const loginFunction = async ()=>{
             document.cookie = `username=${username}; max-age=3600;path=/`;
             location.href = "dashboard.html"
         }
-        else alertMsg.innerText =  "password is incorrect try again";
+        else {
+            alertMsg.innerText =  "password is incorrect try again";
+            alertMsg.style.visibility="visible";
+        }
     } 
     else{
        alertMsg.innerText =  "user does not exists" ;

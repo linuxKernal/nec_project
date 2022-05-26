@@ -143,12 +143,14 @@ body{
     border: 2px solid white;
     border-radius: 4px;
     cursor: pointer;
-    margin-bottom: .3rem;
+    /* margin-bottom: .3rem; */
 }
 
 #alertMsg{
     color: red;
     font-style: italic;
+    margin-top:5px;
+    visibility:hidden;
 }
   
 .login_Button:active {
@@ -224,12 +226,17 @@ hr{
     height:80px;
     background-color: #343A40;
     position: absolute;
+    margin-top:10px;
     bottom: 0px;
-    display:none;
-    /* flex-direction:column; */
+    display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
 }
 .footer_content{
     color:white;
+}
+.footer_content a{
+    color:white;
+    text-decoration:none;
 }

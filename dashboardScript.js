@@ -4,12 +4,12 @@ if(!cookies){
 }
 document.getElementById("loginID").innerText = cookies.split("@")[1].toUpperCase()+" department"
 
-import {doc,getDoc,db,collection ,updateDoc,getDocs,arrayUnion} from "./config.js"
+import {doc,getDoc,db,collection ,updateDoc,getDocs,arrayUnion,arrayRemove} from "./config.js"
 
 const logButn = document.getElementById("bookingButn")
 
 const getData = async ()=>{
-  logButn.innerText = "Booking..."
+  logButn.innerText = "Booking"
   const name = document.getElementById("facultyname").value 
   const dept = document.getElementById("facultydepartment").value
   const desg = document.getElementById("facultydesignation").value
@@ -29,11 +29,30 @@ const getData = async ()=>{
   const ref  = doc(db,"bookingRequests",rdept.toUpperCase()+"_INBOX")
   const sent = new Date()
   await updateDoc(ref, {
-      inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
+      inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"status":"pending","hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
   }).then(()=>  logButn.innerText = "Booked"
   )
-
+  setTimeout(()=>logButn.innerText = "Book", 1600);
+  clearform()
 }
+const clearform = ()=>{
+  document.getElementById("facultyname").value = ""
+  document.getElementById("facultydepartment").selectedIndex= 0
+  document.getElementById("facultydesignation").value= ""
+  document.getElementById("hallrequirementdep").selectedIndex= 0
+  const opt = document.getElementById("hallrequirementroom")
+  opt.innerHTML = "<option value='Null' selected>Dept Hall</option>"
+  document.getElementById("atdate").value= ""
+  document.getElementById("Ftime1").value= ""
+  document.getElementById("Ftime2").value= ""
+  document.getElementById("Ftime3").selectedIndex= 0
+  document.getElementById("Tto1").value= ""
+  document.getElementById("Tto2").value= ""
+  document.getElementById("Tto3").selectedIndex= 0
+  document.getElementById("PAS").selectedIndex= 0
+  document.getElementById("TextBox").value= ""
+}
+document.getElementById("clearingButn").addEventListener("click",clearform)
 const hallData = {
   "IT":[],
   "CSE":[],
@@ -58,7 +77,7 @@ const showHalls = ()=>{
   const rdept = document.getElementById("hallrequirementdep")
   const targetList = document.getElementById("hallrequirementroom")
   targetList.innerText = ""
-  const getvalue = rdept.options[rdept.selectedIndex].value;  
+  const getvalue = rdept.value;  
   hallData[getvalue].forEach(item=>{
     const options = document.createElement('option')
     options.text = options.value = item.hallName
@@ -76,27 +95,44 @@ document.getElementById("hallrequirementdep").addEventListener("change",showHall
 const addHallClick = document.getElementById("addHallButn")
 
 const logoutFunction = ()=>{
-    document.cookie = `username=${cookies}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    document.cookie = `username=${cookies}; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     location.href = "index.html"
 }
 
 document.getElementsByClassName("logoutButn")[0].addEventListener("click",logoutFunction)
 
+const clearHall = async (str,target)=>{
+    target.style.display = "none"
+    const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
+    await updateDoc(ref,{"listHall": arrayRemove({"hallName":str,"status":"free"})})
+    console.log(str+" removed");
+}
+
 const showHall = async()=>{
     const target = document.getElementsByClassName("myHallDiv")[0]
-    target.innerText = ""
     const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
     const text = await getDoc(ref)
+    target.innerText = ""
     text.data().listHall.forEach(item=>{
         const newDiv = document.createElement('div')
+        const butn = document.createElement('button')
+        butn.addEventListener("click",()=>clearHall(item.hallName,newDiv))
+        const ParagraphTag = document.createElement('p')
+        butn.innerText = "X"
+        butn.className = "delButn"
         newDiv.className = "showHall"
-        newDiv.innerText = item.hallName;
+        ParagraphTag.innerText = item.hallName;
+        newDiv.append(ParagraphTag)
+        newDiv.append(butn)
         target.append(newDiv)
     })
-    addHallClick.innerText = "Done"
+    addHallClick.innerText = "Add"
 }
 
 showHall()
+
+
+
 
 const addHall  = async ()=>{
     const hallName = document.getElementById("newHallName")
@@ -108,6 +144,7 @@ const addHall  = async ()=>{
     hallName.value = ""
     showHall()
 }
+
 
 const alertDiv = document.getElementById("alertDivID")
 const inboxMsg = document.getElementsByClassName("temp_msg")
@@ -185,8 +222,12 @@ const briefToggle = (sid=0)=>{
     <span class="openTextD">AP/IT</span>
 </div>
 */
+
+let messageID; 
+
 const infoBrief = (infoData)=>{
     // console.log(infoData);
+    messageID = infoData
     document.getElementById("openTextBox").value = ""
     for(let ID of serverData){
         if(infoData==ID.id){
@@ -243,6 +284,79 @@ const displayInbox = ()=>{
 
 displayInbox()
 
+const masterDiv = document.getElementById("historyDataId")
+const getHistory = (firebaseData) =>{
+    const newDiv = document.createElement('div')
+    newDiv.className = "historyData"
+    const div1 = document.createElement('div')
+    const div2 = document.createElement('div')
+    const div3 = document.createElement('div')
+    const div4 = document.createElement('div')
+    const div5 = document.createElement('div')
+    const div6 = document.createElement('div')
+    const div7 = document.createElement('div')
+    div1.className = "historytext"
+    div2.className = "historytext"
+    div3.className = "historytext"
+    div4.className = "historytext"
+    div5.className = "historytext"
+    div6.className = "historytext"
+    div7.className = "historytext"
+    div1.innerText = firebaseData['name']
+    div2.innerText = firebaseData['staffDept']
+    div3.innerText = firebaseData['bookedDept']
+    div4.innerText = firebaseData['hallName']
+    div5.innerText = firebaseData['Date']
+    div6.innerText = `${firebaseData['TimeFrom']} - ${firebaseData['TimeTo']}`
+    div7.innerText = firebaseData['status']
+    newDiv.append(div1)
+    newDiv.append(div2)
+    newDiv.append(div3)
+    newDiv.append(div4)
+    newDiv.append(div5)
+    newDiv.append(div6)
+    newDiv.append(div7)
+    masterDiv.append(newDiv)
+}
+
+const showHistory = async ()=>{
+    const ref  = collection(db,"bookingRequests")
+    const  text =  await getDocs(ref)
+    text.forEach(item1=>{
+        item1.data().inbox.forEach(item=>{
+            item['bookedDept'] = item1.id.split('_')[0]
+            getHistory(item)
+        })
+        item1.data().view.forEach(item=>{
+            item['bookedDept'] = item1.id.split('_')[0]
+            getHistory(item)
+        })
+    })
+   
+}
+
+showHistory()
+
+const statusFunction = async (num)=>{
+    for(let ID of serverData){
+        if(ID.id === messageID){
+            let data = ID
+            delete data['id']
+            const ref  = doc(db,"bookingRequests",cookies.split("@")[1].toUpperCase()+"_INBOX")
+            await updateDoc(ref, {"inbox": arrayRemove(data)});
+            if(num===1) data['status'] = "accepted"
+            else if(num===2) data['status'] = "rejected"
+            await updateDoc(ref,{"view":arrayUnion(data)})
+            briefToggle(1)
+            fetchData()
+            break
+        }
+    }
+}
+
+document.getElementsByClassName("appButn")[0].addEventListener("click",()=>statusFunction(1))
+document.getElementsByClassName("decButn")[0].addEventListener("click",()=>statusFunction(2))
+
 document.getElementById("page1").addEventListener("click",()=>togglePage(1))
 document.getElementById("page2").addEventListener("click",()=>togglePage(2))
 document.getElementById("page3").addEventListener("click",()=>togglePage(3))
@@ -254,4 +368,3 @@ document.getElementsByClassName("actionButn")[2].addEventListener("click",()=>al
 document.getElementById("addHallButn").addEventListener("click",addHall)
 
 document.querySelector(".openTitle span").addEventListener("click",()=> briefToggle(1))
-// document.getElementById("alertbutn").addEventListener("click",alertToggle)          

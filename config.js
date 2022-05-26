@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-import { getFirestore ,collection, getDoc,doc,setDoc,updateDoc, arrayUnion,getDocs } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
+import { getFirestore ,collection, getDoc,doc,setDoc,updateDoc, arrayUnion,getDocs,arrayRemove } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyCp4dNeP3v6D2T_JgLYxVftrLRvicjiMCg",
@@ -15,5 +15,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 
-export { db, collection , getDoc, doc,setDoc,updateDoc, arrayUnion,getDocs };
+export { db, collection , getDoc, doc,setDoc,updateDoc, arrayUnion,getDocs,arrayRemove };
 
+/*
+{
+    name:'hello',
+    data:[]
+}
+
+*/
