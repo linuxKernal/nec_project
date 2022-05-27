@@ -27,14 +27,19 @@ const getData = async ()=>{
   const ToTime = `${t1}:${t2} ${t3}`
   const audioSystem = document.getElementById("PAS").value
   const note = document.getElementById("TextBox").value
+  if(rdept==="Null" || dept==="Null" ){
+      console.log("Form empty");
+      return
+  }
   const ref  = doc(db,"bookingRequests",rdept.toUpperCase()+"_INBOX")
   const sent = new Date()
   await updateDoc(ref, {
       inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"status":"pending","hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
-  }).then(()=>  logButn.innerText = "Booked"
-  )
-  clearform()
-  alertFunc("successfully booked")
+  }).then(()=>{
+      alertFunc("successfully booked")
+      clearform()
+  })
+  
 }
 const clearform = ()=>{
   document.getElementById("facultyname").value = ""
@@ -88,7 +93,14 @@ const showHalls = ()=>{
 }
 
 
-logButn.addEventListener("click",getData)
+// logButn.addEventListener("click",getData)
+
+const form = document.getElementById("dataForm");
+function handleForm(event) { 
+    event.preventDefault();
+    getData()
+} 
+form.addEventListener('submit', handleForm);
 
 document.getElementById("hallrequirementdep").addEventListener("change",showHalls)
 
@@ -139,6 +151,10 @@ showHall()
 
 const addHall  = async ()=>{
     const hallName = document.getElementById("newHallName")
+    if(hallName.value.trim()===""){
+        console.log("Hall Name is empty");
+        return
+    }
     addHallClick.innerText = "Adding..."
     const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
     await updateDoc(ref, {
@@ -149,10 +165,7 @@ const addHall  = async ()=>{
 }
 
 
-const alertDiv = document.getElementById("alertDivID")
-const inboxMsg = document.getElementsByClassName("temp_msg")
 const indata = document.getElementById("inboxData")
-
 const inboxPage   = document.getElementById("inboxPage")
 const addHallPage = document.getElementById("addHallPage")
 const historyPage = document.getElementById("historyPage")
@@ -299,6 +312,7 @@ const masterDiv = document.getElementById("historyDataId")
 const getHistory = (firebaseData) =>{
     const newDiv = document.createElement('div')
     newDiv.className = "historyData"
+    newDiv.setAttribute("title",firebaseData.adminText)
     const div1 = document.createElement('div')
     const div2 = document.createElement('div')
     const div3 = document.createElement('div')
@@ -332,18 +346,26 @@ const getHistory = (firebaseData) =>{
 
 const showHistory = async ()=>{
     masterDiv.innerHTML = ""
+    const logs = []
     const ref  = collection(db,"bookingRequests")
     const  text =  await getDocs(ref)
     text.forEach(item1=>{
         item1.data().inbox.forEach(item=>{
             item['bookedDept'] = item1.id.split('_')[0]
-            getHistory(item)
+            logs.push(item)
         })
         item1.data().view.forEach(item=>{
             item['bookedDept'] = item1.id.split('_')[0]
-            getHistory(item)
+            logs.push(item)
         })
     })
+    logs.sort(function (a, b) {
+        const dateA = new Date(a.sent.replace(',',' ')).getTime();
+        const dateB = new Date(b.sent.replace(',',' ')).getTime();
+        return dateA < dateB ? 1 : -1; 
+      });
+    
+    logs.forEach(item=>getHistory(item))
    
 }
 
@@ -356,9 +378,12 @@ const statusFunction = async (num)=>{
             delete data['id']
             const ref  = doc(db,"bookingRequests",cookies.split("@")[1].toUpperCase()+"_INBOX")
             await updateDoc(ref, {"inbox": arrayRemove(data)});
+            const replyText = document.getElementById("openTextBox")
+            data['adminText'] = replyText.value
             if(num===1){
-                if((currentDepartment==="PUBLIC" && data['audioSystem']==="Not Need") || currentDepartment!=="PUBLIC"  )
+                if((currentDepartment==="PUBLIC" && data['audioSystem']==="Not Need") || currentDepartment!=="PUBLIC"  ){
                     data['status'] = "accepted"
+                }
                 else{
                     data['status'] = "PA pending"
                 }
@@ -371,9 +396,12 @@ const statusFunction = async (num)=>{
                     data['status'] = "rejected"
                 }
             }
-            await updateDoc(ref,{"view":arrayUnion(data)})
+            
             if(data['status'] === "PA pending"){
-            await updateDoc(doc(db,"bookingRequests","MAIN_INBOX"),{"inbox":arrayUnion(data)})
+                await updateDoc(doc(db,"bookingRequests","MAIN_INBOX"),{"inbox":arrayUnion(data)})
+            }
+            else{
+                await updateDoc(ref,{"view":arrayUnion(data)})
             }
             briefToggle(1)
             fetchData()

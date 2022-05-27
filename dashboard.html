@@ -123,7 +123,7 @@
                         </div>
                         <div class="addHallForum">
                             <label for="newHallName">Hall Name</label><br>
-                            <input type="text" id="newHallName"><br>
+                            <input type="text" id="newHallName" placeholder=""><br>
                             <button id="addHallButn">Add</button>
                         </div>
                     </div>
@@ -189,18 +189,19 @@
             <div class="reserved" id="reservedPage">
                 <div class="bookingDiv">
                         <h2 class="BookingTitle">Booking Requests</h2>
+                        <form id="dataForm">
                         <div class="bookingForm">
                             <div class="bookingInput">
                                 <label for="facultyname">faculty name</label>
-                                <input type="text" id="facultyname">
+                                <input type="text" id="facultyname" required>
                             </div>
                             <div class="bookingInput">
                                 <label for="facultydesignation">faculty designation</label>
-                                <input type="text" id="facultydesignation">
+                                <input type="text" id="facultydesignation" required>
                             </div>
                             <div class="bookingInput">
                                 <label for="facultydesignation">faculty department</label>
-                                <select name="wefw" id="facultydepartment">
+                                <select name="wefw" id="facultydepartment" required>
                                     <option value="Null" selected>Department</option>
                                     <option value="CSE">CSE</option>
                                     <option value="IT" >IT</option>
@@ -211,7 +212,7 @@
                             </div>
                             <div class="bookingInput">
                                 <label for="hallrequirementdep">booking deptarment</label>
-                                <select name="wefw" id="hallrequirementdep">
+                                <select name="wefw" id="hallrequirementdep" required>
                                     <option value="Null" selected>Dept Name</option>
                                     <option value="CSE">CSE</option>
                                     <option value="IT" >IT</option>
@@ -224,19 +225,19 @@
                             <div class="bookingInput">
                                 <label for="">booking hall</label>
                                 <select name="we" id="hallrequirementroom"  required>
-                                    <option value="Null" selected>Dept Hall</option>
+                                    <option value="null" selected>Dept Hall</option>
                                 </select>
                             </div>
                             <div class="bookingInput">
                                 <label for="atdate">Booking date</label>
-                                <input type="date" id="atdate">
+                                <input type="date" id="atdate" required>
                             </div>
                             <div class="bookingInput">
                                 <label for="TimeFrom">Time From</label>
                                     <span>
-                                        <input type="number" min="1" max="12" id="Ftime1"><p class="sep"> : </p>
-                                        <input type="number" min="0" max="59" id="Ftime2">
-                                        <select id="Ftime3">
+                                        <input type="number" min="1" max="12" id="Ftime1" required><p class="sep"> : </p>
+                                        <input type="number" min="0" max="59" id="Ftime2" required>
+                                        <select id="Ftime3" required>
                                             <option value="AM" >AM</option>
                                             <option value="PM">PM</option>
                                         </select>
@@ -245,9 +246,9 @@
                             <div class="bookingInput">
                                 <label for="TimeTo">Time To</label>
                                 <span>
-                                    <input type="number" min="1" max="12" id="Tto1"><p class="sep"> : </p>
-                                    <input type="number" min="0" max="59" id="Tto2">
-                                    <select id="Tto3">
+                                    <input type="number" min="1" max="12" id="Tto1" required><p class="sep"> : </p>
+                                    <input type="number" min="0" max="59" id="Tto2" required>
+                                    <select id="Tto3" required>
                                         <option value="AM" >AM</option>
                                         <option value="PM">PM</option>
                                     </select>
@@ -255,20 +256,22 @@
                             </div>
                             <div class="bookingInput">
                                 <label for="PAS">PA system</label>
-                                <select  id="PAS">
+                                <select  id="PAS" required>
                                     <option value="Need" >required</option>
                                     <option value="Not Need">not required</option>
                                 </select>
                             </div>
                             <div class="bookingInput">
                                 <label for="TextBox">Note</label>
-                                <textarea id="TextBox" cols="40" rows="3"></textarea>
+                                <textarea id="TextBox" cols="40" rows="3" required></textarea>
                             </div>
                         </div>
+                    
                         <div class="butnDiv">
                             <button id="bookingButn">book</button>
                             <button id="clearingButn">clear</button>
                         </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -145,7 +145,7 @@ header img{
 .inboxHeader{
     /* background-color: rgb(39, 174, 252); */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: .5fr 1fr 1fr 1fr 2fr .5fr;
     /* gap: .3rem; */
     /* padding: .3rem; */
     /* border: 3px solid rgb(114, 113, 113); */
@@ -171,12 +171,12 @@ header img{
 
 .temp_msg{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: .5fr 1fr 1fr 1fr 2fr .5fr;
     gap: .3rem;
     padding: .3rem;
     cursor: pointer;
     /* background-color: #c1c1c1; */
-    background-color: rgb(175, 174, 174);
+    background-color: rgb(207, 203, 203);
     margin: .3rem 0;
     border-radius: .3rem;
     text-align: center;
@@ -192,7 +192,7 @@ header img{
 }
 .temp_msg:hover{
     /* background-color: rgba(128, 128, 128, 0.767); */
-    border: 3px solid rgb(39, 188, 238);
+    border: 3px solid #62acb5;
 }
 
 .butnImg{
@@ -265,7 +265,7 @@ header img{
 }
 
 .addNewHall{
-    background-color: rgba(212, 212, 212, 0.623);
+    background-color: rgba(255, 255, 255, 0.623);
     max-height:10rem;
     /* border-left: 3px solid rgb(255, 255, 255); */
 }
@@ -296,9 +296,17 @@ header img{
     width:20rem;
     margin: .5rem 0;
     border-top: none;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 3px solid rgb(5, 177, 245);
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid rgb(13, 156, 252);
+    background-color: transparent;
+}
+.addHallForum input:focus{
+    /* border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid rgb(5, 177, 245); */
 }
 .addHallForum button{
     font-size: 1.2rem;

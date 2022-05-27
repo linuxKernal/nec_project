@@ -149,9 +149,10 @@ body{
 
 #alertMsg{
     color: red;
-    font-style: italic;
+    text-transform: capitalize;
     margin-top:5px;
     visibility:hidden;
+    font-size: 1.1rem;
 }
   
 .login_Button:active {
