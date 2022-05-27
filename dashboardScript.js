@@ -37,28 +37,28 @@ const getData = async ()=>{
       inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"status":"pending","hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
   }).then(()=>{
       alertFunc("successfully booked")
-      clearform()
+      document.getElementById("dataForm").reset(); 
   })
   
 }
-const clearform = ()=>{
-  document.getElementById("facultyname").value = ""
-  document.getElementById("facultydepartment").selectedIndex= 0
-  document.getElementById("facultydesignation").value= ""
-  document.getElementById("hallrequirementdep").selectedIndex= 0
-  const opt = document.getElementById("hallrequirementroom")
-  opt.innerHTML = "<option value='Null' selected>Dept Hall</option>"
-  document.getElementById("atdate").value= ""
-  document.getElementById("Ftime1").value= ""
-  document.getElementById("Ftime2").value= ""
-  document.getElementById("Ftime3").selectedIndex= 0
-  document.getElementById("Tto1").value= ""
-  document.getElementById("Tto2").value= ""
-  document.getElementById("Tto3").selectedIndex= 0
-  document.getElementById("PAS").selectedIndex= 0
-  document.getElementById("TextBox").value= ""
-}
-document.getElementById("clearingButn").addEventListener("click",clearform)
+// const clearform = ()=>{
+//   document.getElementById("facultyname").value = ""
+//   document.getElementById("facultydepartment").selectedIndex= 0
+//   document.getElementById("facultydesignation").value= ""
+//   document.getElementById("hallrequirementdep").selectedIndex= 0
+//   const opt = document.getElementById("hallrequirementroom")
+//   opt.innerHTML = "<option value='Null' selected>Dept Hall</option>"
+//   document.getElementById("atdate").value= ""
+//   document.getElementById("Ftime1").value= ""
+//   document.getElementById("Ftime2").value= ""
+//   document.getElementById("Ftime3").selectedIndex= 0
+//   document.getElementById("Tto1").value= ""
+//   document.getElementById("Tto2").value= ""
+//   document.getElementById("Tto3").selectedIndex= 0
+//   document.getElementById("PAS").selectedIndex= 0
+//   document.getElementById("TextBox").value= ""
+// }
+// document.getElementById("clearingButn").addEventListener("click",clearform)
 const hallData = {
   "IT":[],
   "CSE":[],
