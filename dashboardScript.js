@@ -4,12 +4,13 @@ if(!cookies){
 }
 document.getElementById("loginID").innerText = cookies.split("@")[1].toUpperCase()+" department"
 
+const currentDepartment = cookies.split("@")[1].toUpperCase()
+
 import {doc,getDoc,db,collection ,updateDoc,getDocs,arrayUnion,arrayRemove} from "./config.js"
 
 const logButn = document.getElementById("bookingButn")
 
 const getData = async ()=>{
-  logButn.innerText = "Booking"
   const name = document.getElementById("facultyname").value 
   const dept = document.getElementById("facultydepartment").value
   const desg = document.getElementById("facultydesignation").value
@@ -32,8 +33,8 @@ const getData = async ()=>{
       inbox: arrayUnion({"name":name,"note":note,"sent":`${sent.toLocaleString('en-US')}`,"Date":date.split('-').reverse().join('/'),"staffDept":dept,"desg":desg,"status":"pending","hallName":depthall,"TimeFrom":FromTime,"TimeTo":ToTime,"audioSystem":audioSystem})
   }).then(()=>  logButn.innerText = "Booked"
   )
-  setTimeout(()=>logButn.innerText = "Book", 1600);
   clearform()
+  alertFunc("successfully booked")
 }
 const clearform = ()=>{
   document.getElementById("facultyname").value = ""
@@ -58,7 +59,8 @@ const hallData = {
   "CSE":[],
   "ECE":[],
   "EEE":[],
-  "MECH":[]
+  "MECH":[],
+  "PUBLIC":[]
 }
 
 const getHalls = async ()=>{
@@ -129,6 +131,7 @@ const showHall = async()=>{
     addHallClick.innerText = "Add"
 }
 
+if(currentDepartment!=="MAIN") 
 showHall()
 
 
@@ -164,12 +167,16 @@ const togglePage = (pid)=>{
     addHallPage.style.display = "none"
     historyPage.style.display = "none"
     reservedPage.style.display = "none"
-    if(pid==1)
+    if(pid==1){
+        displayInbox()
         inboxPage.style.display = "block"
+    }
     else if(pid==2)
         addHallPage.style.display = "block"
-    else if(pid==3)
+    else if(pid==3){
+        showHistory()
         historyPage.style.display = "block"
+    }
     else if(pid=4)
         reservedPage.style.display = "block"
 }
@@ -266,6 +273,9 @@ const displayInbox = ()=>{
         const H3 = document.createElement('h3')
         const H4 = document.createElement('h3')
         const H5 = document.createElement('h3')
+        const butn = document.createElement('img')
+        butn.setAttribute("src","./assets/folder.png")
+        butn.className = "butnImg"
         H1.innerText = data.id
         H2.innerText = data.name
         H3.innerText = data.desg
@@ -276,7 +286,8 @@ const displayInbox = ()=>{
         msgDiv.append(H3)
         msgDiv.append(H4)
         msgDiv.append(H5)
-        msgDiv.addEventListener("click",()=>infoBrief(data.id))
+        msgDiv.append(butn)
+        butn.addEventListener("click",()=>infoBrief(data.id))
         indata.append(msgDiv)
     }
      
@@ -320,6 +331,7 @@ const getHistory = (firebaseData) =>{
 }
 
 const showHistory = async ()=>{
+    masterDiv.innerHTML = ""
     const ref  = collection(db,"bookingRequests")
     const  text =  await getDocs(ref)
     text.forEach(item1=>{
@@ -344,9 +356,25 @@ const statusFunction = async (num)=>{
             delete data['id']
             const ref  = doc(db,"bookingRequests",cookies.split("@")[1].toUpperCase()+"_INBOX")
             await updateDoc(ref, {"inbox": arrayRemove(data)});
-            if(num===1) data['status'] = "accepted"
-            else if(num===2) data['status'] = "rejected"
+            if(num===1){
+                if((currentDepartment==="PUBLIC" && data['audioSystem']==="Not Need") || currentDepartment!=="PUBLIC"  )
+                    data['status'] = "accepted"
+                else{
+                    data['status'] = "PA pending"
+                }
+            } 
+            else if(num===2){
+                if(currentDepartment==="MAIN"){
+                    data['status'] = "PA rejected"
+                }
+                else{
+                    data['status'] = "rejected"
+                }
+            }
             await updateDoc(ref,{"view":arrayUnion(data)})
+            if(data['status'] === "PA pending"){
+            await updateDoc(doc(db,"bookingRequests","MAIN_INBOX"),{"inbox":arrayUnion(data)})
+            }
             briefToggle(1)
             fetchData()
             break

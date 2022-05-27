@@ -23,5 +23,11 @@ const loginFunction = async ()=>{
     
 }
 
+const handleKey = (event)=>{
+    if(event.key === "Enter") loginFunction()
+}
+
+document.getElementById("password").addEventListener("keypress",handleKey)
+
 
 document.getElementById("login_Button").addEventListener("click",loginFunction)

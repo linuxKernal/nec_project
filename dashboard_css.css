@@ -6,6 +6,7 @@
 
 body{
     background: url('./assets/nec_home.jpg');
+    font-family: 'Roboto', sans-serif;
 }
 p::selection,h1::selection,h2::selection,h3::selection,a::selection,input::selection,label::selection,button::selection{
     background-color:white;
@@ -37,6 +38,7 @@ header img{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Oswald;
 }
 
 .logoutButn{
@@ -98,15 +100,16 @@ header img{
     align-items:center;
     cursor:pointer;
     border-bottom: 1px solid white;
+    /* background-color: green; */
 }
 
 .sideText img{
-    width:35px;
+    width:30px;
 }
 .sideText p{
     flex-grow: 1;
     /* background-color: yellowgreen; */
-    padding-left: .3rem;
+    padding-left: 1rem;
 }
 
 
@@ -142,7 +145,7 @@ header img{
 .inboxHeader{
     /* background-color: rgb(39, 174, 252); */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
     /* gap: .3rem; */
     /* padding: .3rem; */
     /* border: 3px solid rgb(114, 113, 113); */
@@ -161,22 +164,24 @@ header img{
     text-transform: capitalize ;
     background-color: rgb(255, 255, 255);
     padding: .3rem;
-    color: rgb(173, 173, 173);
+    color: rgb(53, 53, 53);
     text-align: center;
     border-bottom: 3px solid rgb(114, 113, 113);
 }
 
 .temp_msg{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
     gap: .3rem;
     padding: .3rem;
     cursor: pointer;
-    background-color: #c1c1c1;
+    /* background-color: #c1c1c1; */
+    background-color: rgb(175, 174, 174);
     margin: .3rem 0;
     border-radius: .3rem;
     text-align: center;
     transition-duration: 100ms;
+    border: 3px solid transparent;
     /* border-left: 3px solid rgb(216, 216, 216); */
 }
 
@@ -186,9 +191,18 @@ header img{
     /* border-bottom: 3px solid rgb(12, 224, 118); */
 }
 .temp_msg:hover{
-    transform: scale(1.02);
+    /* background-color: rgba(128, 128, 128, 0.767); */
+    border: 3px solid rgb(39, 188, 238);
 }
 
+.butnImg{
+    width:35px;
+    border: 2px solid transparent;
+    transition-duration: 300ms;
+}
+.butnImg:hover{
+    transform: scale(1.2);
+}
 .alertBox{
 	position: absolute;
 	top: 0;
@@ -257,7 +271,7 @@ header img{
 }
 
 .addHallTitle{
-    background-color: rgb(16, 211, 245);
+    background-color: #2fa8ee;
     color: white;
     font-size: 1.3rem;
     text-transform: capitalize;
@@ -268,10 +282,12 @@ header img{
     /* background-color: palegreen; */
     padding: .3rem;
     height:20vh;
+    margin-top: 1rem;
 }
 
 .addHallForum label{
-    font-size: 1.2rem;    
+    font-size: 1.2rem; 
+    color: black;
 }
 
 .addHallForum input{
@@ -289,13 +305,13 @@ header img{
     color: white;
     background-color: #FF6000;
     padding: .3rem 2rem;
-    border: none;
+    border: 2px solid transparent ;
     border-radius: .3rem;
     border: none;
 }
 
 .addHallForum button:active{
-    border: 2px solid green;
+    border: 2px solid white ;
 }
 
 
@@ -316,7 +332,7 @@ header img{
 }
 
 .showHall{
-    background-color: #149c6a;
+    background-color: #2797d8;
     padding-left: 1rem;
     border-left: 3px solid white;
     margin: .3rem 0;
@@ -337,7 +353,7 @@ header img{
     border: 1px solid transparent;
     margin: .2rem;
     color: white;
-    background-color: #cd8a56;
+    background-color: #ff6000;
     border-radius: .3rem;
 }
 .delButn:active{
@@ -427,7 +443,7 @@ header img{
 }
 
 .decButn{
-    background-color: orange;
+    background-color: #ff6000;
 }
 
 .openTextSend button:active{
@@ -461,73 +477,86 @@ header img{
     content: ":";
 }
 
-.bookingDiv{
-    /* background-color: green; */
-}
-
-.bookingMain{
-    background-color: rgb(241, 241, 241);
-    height:80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: .3rem;
-}
-
-.bookingDiv h2{
-    padding: .2rem;
-    text-transform: capitalize;
-    background-color: rgb(4, 169, 245);
-    border-radius: .3rem;
-}
-
-.bookDiv label{
-    font-size: 1.2rem;
-    text-transform: capitalize;
-    color: gray;
-}
-
-.bookDiv input{
-    font-size: 1.3rem;
-    outline: none;
-    margin-top: .3rem;
-    border: 2px solid rgb(4, 169, 245);
-}
-
-.bookDiv select{
-    background-color: rgb(255, 255, 255);
-    /* color: white; */
-}
-
-.bookDiv select,.bookDiv textarea{
-    margin-top: .3rem;
-    border: 2px solid rgb(4, 169, 245);
-    outline: none;
-    margin-top: .3rem;
-    font-size: 1.1rem;
-}
-
-.bookDiv input:focus,.bookDiv select:focus,.bookDiv textarea:focus{
-    border: 2px solid #FF6000
-}
-
-.bookDiv button{
-    font-size: 1.1rem;
-    text-transform: capitalize;
+.BookingTitle{
+    background-color: rgb(75, 118, 245);
     color: white;
-    background-color: #FF6000;
-    padding: .3rem 2rem;
+    text-align: center;
+    padding: .3rem 0;
+}
+
+.bookingDiv{
+    /* background-color: lightgreen; */
+    
+}
+.bookingForm{
+    margin-top: 1rem;
+}
+.bookingInput{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: .3rem 0;
+    width: 50vw;
+    /* background-color: lightyellow; */
+}
+.bookingInput input,.bookingInput select,.bookingInput textarea{
+    font-size: 1.2rem;
+    width: 20vw;
+    border-radius: .3rem;
+    border: 2px solid rgb(69, 69, 238);
+    outline: none;
+    padding: .3rem;
+    border-radius: .3rem;
+    background-color: transparent;
+    margin: .3rem 0;
+    resize: none;
+}
+.bookingInput label{
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    color: black;
+    margin-top: .5rem;
+}
+.bookingInput label::after{
+    content: "";
+}
+
+.butnDiv{
+    /* background-color: lightseagreen; */
+    width:50vw;
+    text-align: center;
+}
+
+#bookingButn,#clearingButn{
+    font-size: 1.2rem;
+    color: white;
     border: 2px solid white;
+    outline: none;
+    padding: .2rem 2.5rem;
     border-radius: .3rem;
 }
 
-
-.bookDiv button:active{
+#bookingButn:active,#clearingButn:active{
     border: 2px solid transparent;
+
 }
 
-#Ftime1,#Ftime2,#Tto1,#Tto2{
-    width:3.5rem;
+#bookingButn{
+    background-color: green;
+    margin-left: 3.2rem;
+}
+
+#clearingButn{
+    background-color: #ff6000;
+    margin-left: 1rem;
+}
+
+.timeDiv{
+    /* background-color: lightskyblue; */
+    display: flex;
+}
+
+#Ftime1,#Ftime2,#Tto1,#Tto2,#Ftime3,#Tto3{
+    width:5.8201rem;
 }
 
 .sep{

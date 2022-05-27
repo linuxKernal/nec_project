@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard_css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <header>
@@ -49,7 +52,8 @@
                     <span class="inboxName">staff name</span>
                     <span class="inboxName">designation</span>
                     <span class="inboxName">hall name</span>
-                    <span class="inboxName">recvied</span>
+                    <span class="inboxName">recevied</span>
+                    <span class="inboxName"></span>
                 </div>
                 <div id="inboxData">
                     <!-- <div class="temp_msg">
@@ -106,8 +110,8 @@
                     </div>
                     <div class="openTextSend">
                         <textarea  id="openTextBox" cols="40" rows="3" placeholder="text"></textarea><br><br>
-                        <button class="appButn actionButn" >aprove</button>
-                        <button class="decButn actionButn" >decline</button>
+                        <button class="appButn actionButn" >Approve</button>
+                        <button class="decButn actionButn" >Decline</button>
                     </div>
                </div>
             </div>
@@ -142,11 +146,11 @@
                     <div class="historyGrid">
                         <div class="historyHeader">
                             <div class="historyValue">Name</div>
-                            <div class="historyValue">StaffDept</div>
-                            <div class="historyValue">BookedDept</div>
-                            <div class="historyValue">BookedHall</div>
-                            <div class="historyValue">BookedDate</div>
-                            <div class="historyValue">EventTime</div>
+                            <div class="historyValue">Staff Dept</div>
+                            <div class="historyValue">Booked Dept</div>
+                            <div class="historyValue">Booked Hall</div>
+                            <div class="historyValue">Booked Date</div>
+                            <div class="historyValue">Event Time</div>
                             <div class="historyValue">Status</div>
                         </div>
                         <div id="historyDataId">
@@ -184,94 +188,99 @@
             </div>
             <div class="reserved" id="reservedPage">
                 <div class="bookingDiv">
-                    <h2>Booking Requests</h2>
-                    <div class="bookingMain">
-                        <div class="bookDiv">
-                            <label for="facultyname">Name</label><br>
-                            <input type="text" id="facultyname">
-                        </div>
-                        <div class="bookDiv">
-                            <label for="facultydepartment">faculty department</label><br>
-                            <select name="wefw" id="facultydepartment">
-                                <option value="Null" selected>__SELECT__</option>
-                                <option value="CSE">CSE</option>
-                                <option value="IT" >IT</option>
-                                <option value="ECE">ECE</option>
-                                <option value="MECH">MECH</option>
-                                <option value="EEE">EEE</option>
-                            </select>
-                        </div>
-                        <div class="bookDiv">
-                            <label for="facultydesignation">faculty designation</label><br>
-                            <input type="text" id="facultydesignation">
-                        </div>
-                        <div class="bookDiv">
-                            <label for="">hall requirement</label><br>
-                            <select name="wefw" id="hallrequirementdep">
-                                <option value="Null" selected>Dept Name</option>
-                                <option value="CSE">CSE</option>
-                                <option value="IT" >IT</option>
-                                <option value="ECE">ECE</option>
-                                <option value="MECH">MECH</option>
-                                <option value="EEE">EEE</option>
-                            </select>
-                            <select name="we" id="hallrequirementroom"  required>
-                                <option value="Null" selected>Dept Hall</option>
-                            </select>
-                        </div>
-                        <div class="bookDiv">
-                            <label for="atdate">Date</label><br>
-                            <input type="date" id="atdate">
-                        </div>
-                        <div class="bookDiv">
-                            <!-- <label for="Time">Time</label><br> -->
-                            <span>
-                                <label for="From">From</label>
-                                <input type="number" id="Ftime1"><p class="sep">:</p>
-                                <input type="number" id="Ftime2">
-                                <select id="Ftime3">
-                                    <option value="AM" >AM</option>
-                                    <option value="PM">PM</option>
+                        <h2 class="BookingTitle">Booking Requests</h2>
+                        <div class="bookingForm">
+                            <div class="bookingInput">
+                                <label for="facultyname">faculty name</label>
+                                <input type="text" id="facultyname">
+                            </div>
+                            <div class="bookingInput">
+                                <label for="facultydesignation">faculty designation</label>
+                                <input type="text" id="facultydesignation">
+                            </div>
+                            <div class="bookingInput">
+                                <label for="facultydesignation">faculty department</label>
+                                <select name="wefw" id="facultydepartment">
+                                    <option value="Null" selected>Department</option>
+                                    <option value="CSE">CSE</option>
+                                    <option value="IT" >IT</option>
+                                    <option value="ECE">ECE</option>
+                                    <option value="MECH">MECH</option>
+                                    <option value="EEE">EEE</option>
                                 </select>
-                            </span>
-                            <span>
-                                <label for="TO">TO</label>
-                                <input type="number" id="Tto1"><p class="sep">:</p>
-                                <input type="number" id="Tto2">
-                                <select id="Tto3">
-                                    <option value="AM" >AM</option>
-                                    <option value="PM">PM</option>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="hallrequirementdep">booking deptarment</label>
+                                <select name="wefw" id="hallrequirementdep">
+                                    <option value="Null" selected>Dept Name</option>
+                                    <option value="CSE">CSE</option>
+                                    <option value="IT" >IT</option>
+                                    <option value="ECE">ECE</option>
+                                    <option value="MECH">MECH</option>
+                                    <option value="EEE">EEE</option>
+                                    <option value="PUBLIC">PUBLIC</option>
                                 </select>
-                            </span>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="">booking hall</label>
+                                <select name="we" id="hallrequirementroom"  required>
+                                    <option value="Null" selected>Dept Hall</option>
+                                </select>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="atdate">Booking date</label>
+                                <input type="date" id="atdate">
+                            </div>
+                            <div class="bookingInput">
+                                <label for="TimeFrom">Time From</label>
+                                    <span>
+                                        <input type="number" min="1" max="12" id="Ftime1"><p class="sep"> : </p>
+                                        <input type="number" min="0" max="59" id="Ftime2">
+                                        <select id="Ftime3">
+                                            <option value="AM" >AM</option>
+                                            <option value="PM">PM</option>
+                                        </select>
+                                    </span>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="TimeTo">Time To</label>
+                                <span>
+                                    <input type="number" min="1" max="12" id="Tto1"><p class="sep"> : </p>
+                                    <input type="number" min="0" max="59" id="Tto2">
+                                    <select id="Tto3">
+                                        <option value="AM" >AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="PAS">PA system</label>
+                                <select  id="PAS">
+                                    <option value="Need" >required</option>
+                                    <option value="Not Need">not required</option>
+                                </select>
+                            </div>
+                            <div class="bookingInput">
+                                <label for="TextBox">Note</label>
+                                <textarea id="TextBox" cols="40" rows="3"></textarea>
+                            </div>
                         </div>
-                        <div class="bookDiv">
-                            <label for="PAS">PA system</label><br>
-                            <select  id="PAS">
-                                <option value="Need" >Need</option>
-                                <option value="Not Need">Not Need</option>
-                            </select>
-                        </div>
-                        <div class="bookDiv">
-                            <label for="TextBox">Note</label><br>
-                            <textarea id="TextBox" cols="40" rows="3"></textarea>
-                        </div>
-                        <div class="bookDiv">
+                        <div class="butnDiv">
                             <button id="bookingButn">book</button>
                             <button id="clearingButn">clear</button>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
         <div class="footer_content_container">
             <p class="footer_content">&copy; 2022 NEC Hall Booking </p>
             <p class="footer_content">Designed by NEC IT Students 2020-2024 batch</p>
             <p class="footer_content">For Technical Support? <a href="mailto:2015003@nec.edu.in, 2015030@nec.edu.in, 2015031@nec.edu.in, 2015037@nec.edu.in">Contact through Email</a></p>
         </div>
-    </div>
+    </div> -->
 <div class="alertBox" id="alertbox" style="display: none;">
     <div class="alertDiv" id="alertdiv">
         <div class="image_line">
