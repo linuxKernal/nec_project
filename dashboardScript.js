@@ -6,9 +6,11 @@ document.getElementById("loginID").innerText = cookies.split("@")[1].toUpperCase
 
 const currentDepartment = cookies.split("@")[1].toUpperCase()
 
+document.getElementsByClassName("myHallTitle")[0].innerText = "Halls In "+currentDepartment;
+
 import {doc,getDoc,db,collection ,updateDoc,getDocs,arrayUnion,arrayRemove} from "./config.js"
 
-const logButn = document.getElementById("bookingButn")
+
 
 const getData = async ()=>{
   const name = document.getElementById("facultyname").value 
@@ -115,11 +117,22 @@ const logoutFunction = ()=>{
 
 document.getElementsByClassName("logoutButn")[0].addEventListener("click",logoutFunction)
 
-const clearHall = async (str,target)=>{
+const clearHall = async (event,str,target)=>{
     target.style.display = "none"
     const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
     await updateDoc(ref,{"listHall": arrayRemove({"hallName":str,"status":"free"})})
     console.log(str+" removed");
+}
+
+let currentTagValue = ""
+
+const hallEdit = async (tag)=>{
+    if(currentTagValue !== tag.innerText ){
+        const ref  = doc(db,"HALL",cookies.split("@")[1].toUpperCase()+"_HALL")
+        await updateDoc(ref,{"listHall": arrayRemove({"hallName":currentTagValue,"status":"free"})})
+        await updateDoc(ref,{"listHall": arrayUnion({"hallName":tag.innerText,"status":"free"})})
+        console.log("hall edited");
+    }
 }
 
 const showHall = async()=>{
@@ -130,9 +143,13 @@ const showHall = async()=>{
     text.data().listHall.forEach(item=>{
         const newDiv = document.createElement('div')
         const butn = document.createElement('button')
-        butn.addEventListener("click",()=>clearHall(item.hallName,newDiv))
+        butn.addEventListener("click",(event)=>clearHall(event,item.hallName,newDiv))
         const ParagraphTag = document.createElement('p')
+        ParagraphTag.contentEditable = true
         butn.innerText = "X"
+        ParagraphTag.spellcheck = false
+        ParagraphTag.addEventListener('focus',()=>currentTagValue=ParagraphTag.innerText)
+        ParagraphTag.addEventListener('focusout',()=>hallEdit(ParagraphTag))
         butn.className = "delButn"
         newDiv.className = "showHall"
         ParagraphTag.innerText = item.hallName;

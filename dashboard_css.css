@@ -340,20 +340,28 @@ header img{
 }
 
 .showHall{
-    background-color: #2797d8;
+    background-color: #3ca8e7;
     padding-left: 1rem;
     border-left: 3px solid white;
     margin: .3rem 0;
     display: flex;
+    color: white;
 }
+
 
 .showHall p{
     font-size: 1.1rem;
-    color: white;
     padding: .3rem;
     flex-grow: 1;
+    outline: none;
 }
 
+
+
+.showHall p:focus{
+    background-color: rgb(255, 255, 255);
+    color: royalblue;
+}
 .delButn{
     font-size: 1.1rem;
     width:2.5rem;
@@ -486,16 +494,30 @@ header img{
 }
 
 .BookingTitle{
-    background-color: rgb(75, 118, 245);
-    color: white;
+    /* background-color: rgb(75, 118, 245); */
+    color: rgb(11, 151, 245);
     text-align: center;
     padding: .3rem 0;
 }
 
 .bookingDiv{
-    /* background-color: lightgreen; */
-    
+    background-color: white;
+    border: 3px solid transparent;
+    border-radius: 1rem;
+    width:65vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    margin: 0 auto ;
+    padding: 1rem;
+    /* border: 1px solid gray; */
 }
+
+#dataForm{
+    /* background-color: lightpink; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .bookingForm{
     margin-top: 1rem;
 }
@@ -510,7 +532,7 @@ header img{
     font-size: 1.2rem;
     width: 20vw;
     border-radius: .3rem;
-    border: 2px solid rgb(69, 69, 238);
+    border: 2px solid rgb(20, 151, 238);
     outline: none;
     padding: .3rem;
     border-radius: .3rem;
@@ -518,15 +540,22 @@ header img{
     margin: .3rem 0;
     resize: none;
 }
+.bookingInput input:focus,.bookingInput select:focus,.bookingInput textarea:focus{
+    border: 2px solid green;
+}
 .bookingInput label{
-    font-size: 1.3rem;
+    font-size: 1.19rem;
     text-transform: capitalize;
     color: black;
     margin-top: .5rem;
+    padding-left:1rem ;
+    /* text-align: right;
+    padding-right: 1rem; */
 }
 .bookingInput label::after{
     content: "";
 }
+
 
 .butnDiv{
     /* background-color: lightseagreen; */
